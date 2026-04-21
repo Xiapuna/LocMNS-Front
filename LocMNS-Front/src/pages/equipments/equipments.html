@@ -1,1 +1,42 @@
-<p>equipments works!</p>
+<div class="phone">
+  <!-- Top bar -->
+  <header class="top-bar">
+    <img src="assets/icons/menu.svg" alt="menu" class="icon" />
+    <img src="assets/banner.png" alt="banner" class="banner" />
+    <img src="assets/icons/user.svg" alt="profil" class="icon" />
+  </header>
+
+  <h1 class="title">Réservation LocMNS</h1>
+
+  <!-- Section title -->
+  <div class="section-header">
+    <h2>Liste des équipements</h2>
+    <div class="actions">
+      <button class="icon-btn">
+        <img src="assets/icons/search.svg" alt="search" />
+      </button>
+
+      <button class="icon-btn">
+        <img src="assets/icons/filter.svg" alt="filter" />
+      </button>
+    </div>
+  </div>
+
+  <!-- Equipments list -->
+  <div class="equipments-list">
+    @for (equipment of equipments(); track equipment.id) {
+      <div class="equipment-card">
+        <div class="left">
+          <img src="assets/icons/laptop.svg" class="equip-icon" />
+          <span class="equip-name">{{ equipment.name }}</span>
+          <span>{{ equipment.location.name }}</span>
+        </div>
+
+        <div class="buttons">
+          <button class="btn info" routerLink="/">Plus d’info</button>
+          <button class="btn reserve" routerLink="/">Réserver</button>
+        </div>
+      </div>
+    }
+  </div>
+</div>

@@ -6,6 +6,6 @@
     "outDir": "./out-tsc/app",
     "types": []
   },
-  "include": ["src/**/*.ts", "src/pages/equipments/equipments.component.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/pages/equipments/equipments.component.ts"],
   "exclude": ["src/**/*.spec.ts"]
 }
