@@ -10,7 +10,6 @@ import { RouterLink } from '@angular/router';
 })
 export class Equipments implements OnInit {
   equipments = signal<Equipment[]>([]);
-
   httpClient = inject(HttpClient);
 
   ngOnInit() {

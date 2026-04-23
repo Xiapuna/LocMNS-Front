@@ -1,0 +1,47 @@
+<div class="page">
+  <header class="header">
+    <button class="icon-btn">
+      <span class="material-icons">menu</span>
+    </button>
+
+    <h1>Information équipement</h1>
+
+    <button class="icon-btn">
+      <span class="material-icons">account_circle</span>
+    </button>
+  </header>
+
+  <section class="images">
+    <div class="img-placeholder"></div>
+    <div class="img-placeholder small"></div>
+  </section>
+
+  @if (equipment()) {
+    <section class="info-block">
+      <h2 class="equipment-title">{{ equipment()!.name }}</h2>
+
+      <p class="sub-info">{{ equipment()!.model.name }} – {{ equipment()!.model.type.name }}</p>
+
+      <p class="sub-info">Loué – {{ equipment()!.location.name }}</p>
+
+      <p class="sub-info">
+        Seules les personnes ayant une accréditation de
+        @for (accreditation of equipment()!.model.type.accreditations; track accreditation.id) {
+          {{ accreditation.name }}
+        }
+        peuvent réserver ce matériel
+      </p>
+
+      <p class="description">
+        {{ equipment()!.model.description }}
+      </p>
+    </section>
+  }
+  <footer class="footer">
+    <button class="reserve-btn">Réserver</button>
+
+    <button class="icon-btn refresh">
+      <span class="material-icons">refresh</span>
+    </button>
+  </footer>
+</div>

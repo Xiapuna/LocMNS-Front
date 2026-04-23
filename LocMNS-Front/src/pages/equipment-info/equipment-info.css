@@ -1,0 +1,80 @@
+.page {
+  padding: 16px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.images {
+  margin: 20px 0;
+}
+
+.img-placeholder {
+  width: 100%;
+  height: 180px;
+  background: #e6e6e6;
+  border-radius: 8px;
+}
+
+.img-placeholder.small {
+  margin-top: 10px;
+  height: 80px;
+}
+
+.info-block {
+  margin-top: 20px;
+}
+
+.equipment-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.sub-info {
+  font-size: 14px;
+  color: #666;
+  margin: 2px 0;
+}
+
+.description {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.footer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reserve-btn {
+  flex: 1;
+  padding: 12px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.refresh {
+  margin-left: 12px;
+  background: #f0f0f0;
+  border-radius: 6px;
+}
