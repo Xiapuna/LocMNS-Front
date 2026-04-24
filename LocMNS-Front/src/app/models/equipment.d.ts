@@ -2,6 +2,6 @@ type Equipment = {
   id: number;
   name: string;
   condition: String;
-  location: equipmentLocation;
+  location: EquipmentLocation;
   model: EquipmentModel;
 };

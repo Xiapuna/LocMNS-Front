@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-info-equipment',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './equipment-info.html',
   styleUrl: './equipment-info.css',
 })

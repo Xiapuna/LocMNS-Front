@@ -1,8 +1,8 @@
 type loan = {
   id: number;
-  startDate: string;
-  endDate: string;
-  realEndDate: string;
+  startDate: Date;
+  endDate: Date;
+  realEndDate: Date;
   appUser: AppUser;
   equipment: Equipment;
 };

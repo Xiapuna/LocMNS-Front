@@ -9,6 +9,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './equipments.css',
 })
 export class Equipments implements OnInit {
+  equipment = signal<Equipment | null>(null);
   equipments = signal<Equipment[]>([]);
   httpClient = inject(HttpClient);
 
