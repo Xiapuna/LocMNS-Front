@@ -1,0 +1,35 @@
+<div class="calendar">
+  <div class="header">
+    <button (click)="prevMonth()">‹</button>
+    <h2>{{ currentDate | date: 'MMMM yyyy' }}</h2>
+    <button (click)="nextMonth()">›</button>
+  </div>
+
+  <div class="weekdays">
+    <div>Lun</div>
+    <div>Mar</div>
+    <div>Mer</div>
+    <div>Jeu</div>
+    <div>Ven</div>
+    <div>Sam</div>
+    <div>Dim</div>
+  </div>
+
+  <div class="weeks">
+    @for (week of weeks; track $index) {
+      <div class="week">
+        @for (day of week; track $index) {
+          <div
+            class="day"
+            [class.reserved]="day.reserved"
+            [class.other-month]="day.date.getMonth() !== currentDate.getMonth()"
+            [class.available]="!day.reserved"
+            [class.selected]="isSelected(day.date)"
+          >
+            {{ day.date.getDate() }}
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>

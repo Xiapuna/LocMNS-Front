@@ -27,7 +27,11 @@
       </div>
 
       <div class="calendar">
-        <!-- Ton calendrier Angular ici -->
+        <app-equipment-calendar
+          [reservations]="reservations"
+          [selectedStart]="booking.startDate()"
+          [selectedEnd]="booking.endDate()"
+        />
       </div>
 
       <button class="primary-btn" (click)="goToStep(2)">Valider la réservation</button>
@@ -40,11 +44,16 @@
       <h2 class="title">Récapitulatif</h2>
       <p class="subtitle">
         Vous allez réserver l’équipement {{ equipment()?.name }} du :
-        <strong>{{ startDate() }}</strong> au <strong>{{ endDate() }}</strong>
+        <strong>{{ booking.startDate() | date: 'dd/MM/yyyy' }}</strong> au
+        <strong>{{ booking.endDate() | date: 'dd/MM/yyyy' }}</strong>
       </p>
 
       <div class="calendar recap">
-        <!-- Calendrier avec dates surlignées -->
+        <app-equipment-calendar
+          [reservations]="reservations"
+          [selectedStart]="booking.startDate()"
+          [selectedEnd]="booking.endDate()"
+        />
       </div>
 
       <div class="btn-row">
@@ -60,7 +69,8 @@
       <h2 class="title">Confirmation</h2>
       <p class="subtitle">
         Votre réservation est confirmée du
-        <strong>{{ startDate() }}</strong> au <strong>{{ endDate() }}</strong
+        <strong>{{ booking.startDate() | date: 'dd/MM/yyyy' }}</strong> au
+        <strong>{{ booking.endDate() | date: 'dd/MM/yyyy' }}</strong
         >.
       </p>
 

@@ -1,0 +1,46 @@
+.calendar {
+  width: 100%;
+  max-width: 450px;
+  margin: auto;
+  font-family: sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.weekdays,
+.week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.day {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #eee;
+}
+
+.reserved {
+  background-color: #ffb3b3;
+  color: #900;
+  font-weight: bold;
+}
+
+.available {
+  background-color: #d9fdd3;
+  color: #0f6b00;
+  font-weight: bold;
+}
+
+.day.selected {
+  background-color: #ffcc80;
+  color: #8a4b00;
+  font-weight: bold;
+}
+
+.other-month {
+  opacity: 0.4;
+}
