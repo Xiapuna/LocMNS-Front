@@ -14,7 +14,7 @@ export class EquipmentCalendar implements OnInit {
   @Input() selectedStart: Date | null = null;
   @Input() selectedEnd: Date | null = null;
 
-  currentDate = new Date();
+  currentDate = signal(new Date());
   weeks: CalendarDay[][] = [];
 
   ngOnInit() {
@@ -22,7 +22,7 @@ export class EquipmentCalendar implements OnInit {
   }
 
   generateCalendar() {
-    const dDay = this.currentDate;
+    const dDay = this.currentDate();
     const year = dDay.getFullYear();
     const month = dDay.getMonth();
 
@@ -66,14 +66,14 @@ export class EquipmentCalendar implements OnInit {
   }
 
   nextMonth() {
-    const day = this.currentDate;
-    this.currentDate = new Date(day.getFullYear(), day.getMonth() + 1, 1);
+    const day = this.currentDate();
+    this.currentDate.set(new Date(day.getFullYear(), day.getMonth() + 1, 1));
     this.generateCalendar();
   }
 
   prevMonth() {
-    const day = this.currentDate;
-    this.currentDate = new Date(day.getFullYear(), day.getMonth() - 1, 1);
+    const day = this.currentDate();
+    this.currentDate.set(new Date(day.getFullYear(), day.getMonth() - 1, 1));
     this.generateCalendar();
   }
 
