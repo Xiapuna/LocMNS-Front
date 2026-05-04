@@ -17,6 +17,12 @@ export class EquipmentCalendar implements OnInit {
   currentDate = signal(new Date());
   weeks: CalendarDay[][] = [];
 
+  get minDate(): Date {
+    const d = new Date();
+    d.setHours(0, 0, 0, 0);
+    return d;
+  }
+
   ngOnInit() {
     this.generateCalendar();
   }
@@ -37,6 +43,9 @@ export class EquipmentCalendar implements OnInit {
     const lastWeekDay = (lastDay.getDay() + 6) % 7;
     end.setDate(end.getDate() + (6 - lastWeekDay));
 
+    start.setHours(0, 0, 0, 0);
+    end.setHours(0, 0, 0, 0);
+
     const day = new Date(start);
     const weeks: CalendarDay[][] = [];
 
@@ -44,9 +53,12 @@ export class EquipmentCalendar implements OnInit {
       const week: CalendarDay[] = [];
 
       for (let i = 0; i < 7; i++) {
+        const normalized = new Date(day);
+        normalized.setHours(0, 0, 0, 0);
+
         week.push({
-          date: new Date(day),
-          reserved: this.isReserved(day),
+          date: normalized,
+          reserved: this.isReserved(normalized),
         });
         day.setDate(day.getDate() + 1);
       }
@@ -58,10 +70,17 @@ export class EquipmentCalendar implements OnInit {
   }
 
   isReserved(date: Date): boolean {
+    const d = new Date(date);
+    d.setHours(0, 0, 0, 0);
+
     return this.reservations.some((r) => {
       const start = new Date(r.startDate);
       const end = new Date(r.endDate);
-      return date >= start && date <= end;
+
+      start.setHours(0, 0, 0, 0);
+      end.setHours(0, 0, 0, 0);
+
+      return d >= start && d <= end;
     });
   }
 
@@ -80,5 +99,9 @@ export class EquipmentCalendar implements OnInit {
   isSelected(date: Date): boolean {
     if (!this.selectedStart || !this.selectedEnd) return false;
     return date >= this.selectedStart && date <= this.selectedEnd;
+  }
+
+  isPast(date: Date): boolean {
+    return date < this.minDate;
   }
 }

@@ -1,7 +1,7 @@
 <div class="calendar">
   <div class="header">
     <button (click)="prevMonth()">‹</button>
-    <h2>{{ currentDate | date: 'MMMM yyyy' }}</h2>
+    <h2>{{ currentDate() | date: 'MMMM yyyy' }}</h2>
     <button (click)="nextMonth()">›</button>
   </div>
 
@@ -22,9 +22,10 @@
           <div
             class="day"
             [class.reserved]="day.reserved"
-            [class.other-month]="day.date.getMonth() !== currentDate.getMonth()"
+            [class.other-month]="day.date.getMonth() !== currentDate().getMonth()"
             [class.available]="!day.reserved"
             [class.selected]="isSelected(day.date)"
+            [class.past]="isPast(day.date)"
           >
             {{ day.date.getDate() }}
           </div>

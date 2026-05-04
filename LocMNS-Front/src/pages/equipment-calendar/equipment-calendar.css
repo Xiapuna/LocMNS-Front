@@ -44,3 +44,10 @@
 .other-month {
   opacity: 0.4;
 }
+
+.day.past {
+  opacity: 0.4;
+  pointer-events: none;
+  background-color: #eee;
+  color: #999;
+}
