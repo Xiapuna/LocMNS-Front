@@ -5,6 +5,7 @@ import { EquipmentCalendar } from '../equipment-calendar/equipment-calendar';
 import { LoanCalendarDto } from '../../app/models/loan-calendar-dto';
 import { CommonModule, DatePipe } from '@angular/common';
 import { BookingDatesService } from '../../services/booking-dates.service';
+import { EquipmentService } from '../../services/equipment.service';
 
 @Component({
   selector: 'app-equipment-booking',
@@ -14,33 +15,39 @@ import { BookingDatesService } from '../../services/booking-dates.service';
 })
 export class EquipmentBooking implements OnInit {
   route = inject(ActivatedRoute);
-  httpClient = inject(HttpClient);
   router = inject(Router);
+
+  booking = inject(BookingDatesService);
+  equipmentService = inject(EquipmentService);
+
   equipment = signal<Equipment | null>(null);
   step = signal(1);
+
   reservations: LoanCalendarDto[] = [];
-  booking = inject(BookingDatesService);
+  errorMessage: string | null = null;
+
+  goToHome() {
+    this.router.navigate(['/home']);
+  }
 
   goToStep(number: number) {
     console.log('STEP =', number);
     this.step.set(number);
   }
 
-  goToHome() {
-    this.router.navigate(['/home']);
-  }
-
   ngOnInit() {
+    this.booking.reset();
+
     this.route.params.subscribe((params) => {
       const id = +params['id'];
 
-      this.httpClient
-        .get<Equipment>('http://localhost:8080/equipment/' + id)
+      this.equipmentService
+        .getEquipment(id)
         .subscribe((equipmentBooking) => this.equipment.set(equipmentBooking));
 
-      this.httpClient
-        .get<LoanCalendarDto[]>('http://localhost:8080/equipment/' + id + '/loans')
-        .subscribe((data) => (this.reservations = data));
+      this.equipmentService.getEquipmentLoans(id).subscribe((data) => {
+        this.reservations = data;
+      });
     });
   }
 
@@ -97,14 +104,18 @@ export class EquipmentBooking implements OnInit {
     const equipmentId = this.equipment()!.id;
     const start = this.booking.startDate()!;
     const end = this.booking.endDate()!;
+    const formatDate = (d: Date) =>
+      `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 
-    this.httpClient
-      .post('http://localhost:8080/loan', {
-        equipmentId: equipmentId,
-        startDate: start,
-        endDate: end,
-      })
-      .subscribe(() => this.goToStep(3));
+    this.equipmentService.createLoan(equipmentId, start, end).subscribe({
+      next: () => {
+        this.errorMessage = null;
+        this.goToStep(3);
+      },
+      error: (err) => {
+        this.errorMessage = err.error;
+      },
+    });
   }
 
   isDateBlocked(date: Date): boolean {

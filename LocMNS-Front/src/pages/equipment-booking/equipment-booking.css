@@ -98,3 +98,10 @@
   justify-content: space-between;
   gap: 12px;
 }
+
+.error-message {
+  color: #b00020;
+  font-weight: 600;
+  margin-top: 12px;
+  text-align: center;
+}

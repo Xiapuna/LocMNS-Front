@@ -1,4 +1,5 @@
 export type LoanCalendarDto = {
-  startDate: Date;
-  endDate: Date;
+  id: number;
+  startDate: string;
+  endDate: string;
 };

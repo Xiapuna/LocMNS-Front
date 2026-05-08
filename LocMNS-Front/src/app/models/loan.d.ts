@@ -1,4 +1,4 @@
-type loan = {
+type Loan = {
   id: number;
   startDate: Date;
   endDate: Date;

@@ -17,6 +17,11 @@ export class EquipmentCalendar implements OnInit {
   currentDate = signal(new Date());
   weeks: CalendarDay[][] = [];
 
+  private toLocalDate(dateString: string): Date {
+    const [year, month, day] = dateString.split('-').map(Number);
+    return new Date(year, month - 1, day);
+  }
+
   get minDate(): Date {
     const d = new Date();
     d.setHours(0, 0, 0, 0);
@@ -25,6 +30,19 @@ export class EquipmentCalendar implements OnInit {
 
   ngOnInit() {
     this.generateCalendar();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['selectedStart'] && this.selectedStart) {
+      const target = new Date(this.selectedStart);
+      target.setHours(0, 0, 0, 0);
+
+      // 👉 On positionne le calendrier sur le mois de la date sélectionnée
+      this.currentDate.set(new Date(target.getFullYear(), target.getMonth(), 1));
+
+      // 👉 On régénère le calendrier
+      this.generateCalendar();
+    }
   }
 
   generateCalendar() {
@@ -74,8 +92,8 @@ export class EquipmentCalendar implements OnInit {
     d.setHours(0, 0, 0, 0);
 
     return this.reservations.some((r) => {
-      const start = new Date(r.startDate);
-      const end = new Date(r.endDate);
+      const start = this.toLocalDate(r.startDate);
+      const end = this.toLocalDate(r.endDate);
 
       start.setHours(0, 0, 0, 0);
       end.setHours(0, 0, 0, 0);

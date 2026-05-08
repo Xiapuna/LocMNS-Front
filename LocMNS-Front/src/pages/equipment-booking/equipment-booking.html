@@ -60,6 +60,10 @@
         <button class="secondary-btn" (click)="goToStep(1)">Modifier</button>
         <button class="primary-btn" (click)="confirmReservation()">Confirmer</button>
       </div>
+
+      @if (errorMessage) {
+        <p class="error-message">{{ errorMessage }}</p>
+      }
     </section>
   }
 
