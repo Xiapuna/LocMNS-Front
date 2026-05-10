@@ -147,4 +147,12 @@ export class EquipmentBooking implements OnInit {
 
     return true;
   }
+  getDuration(): number {
+    const start = this.booking.startDate();
+    const end = this.booking.endDate();
+    if (!start || !end) return 0;
+
+    const diff = end.getTime() - start.getTime();
+    return Math.floor(diff / (1000 * 60 * 60 * 24)) + 1;
+  }
 }

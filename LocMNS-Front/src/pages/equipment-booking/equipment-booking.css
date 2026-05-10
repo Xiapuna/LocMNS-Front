@@ -105,3 +105,10 @@
   margin-top: 12px;
   text-align: center;
 }
+
+.error-message {
+  color: #b00020;
+  font-weight: 600;
+  margin-top: 12px;
+  text-align: center;
+}

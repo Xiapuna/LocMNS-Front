@@ -72,13 +72,18 @@
     <section class="section">
       <h2 class="title">Confirmation</h2>
       <p class="subtitle">
-        Votre réservation est confirmée du
+        Votre réservation de l’équipement {{ equipment()?.name }} est confirmée du
         <strong>{{ booking.startDate() | date: 'dd/MM/yyyy' }}</strong> au
         <strong>{{ booking.endDate() | date: 'dd/MM/yyyy' }}</strong
-        >.
+        >. (Durée : <strong>{{ getDuration() }} jour{{ getDuration() > 1 ? 's' : '' }}</strong
+        >)
       </p>
 
       <button class="primary-btn full" (click)="goToHome()">Retour espace LocMNS</button>
+
+      @if (errorMessage) {
+        <p class="error-message">{{ errorMessage }}</p>
+      }
     </section>
   }
 </div>
