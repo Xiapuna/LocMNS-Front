@@ -1,42 +1,39 @@
-<div class="phone">
-  <!-- Top bar -->
-  <header class="top-bar">
-    <img src="assets/icons/menu.svg" alt="menu" class="icon" />
-    <img src="assets/banner.png" alt="banner" class="banner" />
-    <img src="assets/icons/user.svg" alt="profil" class="icon" />
+<div class="page">
+  <header class="header">
+    <img src="assets/icons/menu.svg" alt="menu" class="icon-btn" />
+    <h1 class="header-title">Réservation LocMNS</h1>
+    <img src="assets/icons/user.svg" alt="profil" class="icon-btn" />
   </header>
 
-  <h1 class="title">Réservation LocMNS</h1>
-
-  <!-- Section title -->
   <div class="section-header">
-    <h2>Liste des équipements</h2>
+    <h2 class="title">Liste des équipements</h2>
+
     <div class="actions">
       <button class="icon-btn">
         <img src="assets/icons/search.svg" alt="search" />
       </button>
-
       <button class="icon-btn">
         <img src="assets/icons/filter.svg" alt="filter" />
       </button>
     </div>
   </div>
 
-  <!-- Equipments list -->
-  <div class="equipments-list">
+  <div class="equipments-list fade-in">
     @for (equipment of equipments(); track equipment.id) {
       <div class="equipment-card">
-        <div class="left">
+        <div class="equipment-info">
           <img src="assets/icons/laptop.svg" class="equip-icon" />
-          <span class="equip-name">{{ equipment.name }}</span>
-          <span>{{ equipment.location.name }}</span>
+          <div class="equipment-text">
+            <span class="equip-name">{{ equipment.name }}</span>
+            <span class="equip-location">{{ equipment.location.name }}</span>
+          </div>
         </div>
 
-        <div class="buttons">
-          <button class="btn info" routerLink="/equipment-info/{{ equipment.id }}">
+        <div class="equipment-actions">
+          <button class="btn secondary" routerLink="/equipment-info/{{ equipment.id }}">
             Plus d’info
           </button>
-          <button class="btn reserve" routerLink="/equipment-booking/{{ equipment.id }}">
+          <button class="btn primary" routerLink="/equipment-booking/{{ equipment.id }}">
             Réserver
           </button>
         </div>

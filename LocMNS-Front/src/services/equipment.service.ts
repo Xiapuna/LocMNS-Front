@@ -18,14 +18,15 @@ export class EquipmentService {
     );
   }
 
-  createLoan(equipmentId: number, start: Date, end: Date) {
+  createLoan(equipmentId: number, start: Date, end: Date, appUserId: number) {
     const formatDate = (d: Date) =>
       `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 
     return this.httpClient.post('http://localhost:8080/loan', {
-      equipment: { id: equipmentId },
+      equipmentId: equipmentId,
       startDate: formatDate(start),
       endDate: formatDate(end),
+      appUserId: appUserId,
     });
   }
 }

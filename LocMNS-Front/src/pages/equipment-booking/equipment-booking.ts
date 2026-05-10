@@ -104,10 +104,11 @@ export class EquipmentBooking implements OnInit {
     const equipmentId = this.equipment()!.id;
     const start = this.booking.startDate()!;
     const end = this.booking.endDate()!;
+    const appUserId = 1;
     const formatDate = (d: Date) =>
       `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 
-    this.equipmentService.createLoan(equipmentId, start, end).subscribe({
+    this.equipmentService.createLoan(equipmentId, start, end, appUserId).subscribe({
       next: () => {
         this.errorMessage = null;
         this.goToStep(3);

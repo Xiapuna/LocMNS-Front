@@ -1,18 +1,18 @@
 <div class="page">
   <!-- HEADER -->
   <header class="header">
-    <button class="icon-btn">
+    <button class="icon-btn" (click)="goToHome()">
       <span class="material-icons">arrow_back</span>
     </button>
-    <h1>Réservation</h1>
+    <h1 class="header-title">Réservation</h1>
     <div class="spacer"></div>
   </header>
 
-  <!-- ÉTAPE 1 : CHOIX DES DATES -->
+  <!-- ÉTAPE 1 -->
   @if (step() === 1 && equipment()) {
-    <section class="section">
-      <h2 class="title">Réservation de l’équipement {{ equipment()?.name }}</h2>
-      <p class="subtitle">Choix de la plage de réservation</p>
+    <section class="section fade-in">
+      <h2 class="title">Réserver {{ equipment()?.name }}</h2>
+      <p class="subtitle">Choisissez votre plage de réservation</p>
 
       <div class="date-fields">
         <div class="field">
@@ -34,17 +34,16 @@
         />
       </div>
 
-      <button class="primary-btn" (click)="goToStep(2)">Valider la réservation</button>
+      <button class="btn primary" (click)="goToStep(2)">Valider</button>
     </section>
   }
 
-  <!-- ÉTAPE 2 : RÉCAPITULATIF -->
+  <!-- ÉTAPE 2 -->
   @if (step() === 2 && equipment()) {
-    <section class="section">
+    <section class="section fade-in">
       <h2 class="title">Récapitulatif</h2>
       <p class="subtitle">
-        Vous allez réserver l’équipement {{ equipment()?.name }} du :
-        <strong>{{ booking.startDate() | date: 'dd/MM/yyyy' }}</strong> au
+        Réservation du <strong>{{ booking.startDate() | date: 'dd/MM/yyyy' }}</strong> au
         <strong>{{ booking.endDate() | date: 'dd/MM/yyyy' }}</strong>
       </p>
 
@@ -57,8 +56,8 @@
       </div>
 
       <div class="btn-row">
-        <button class="secondary-btn" (click)="goToStep(1)">Modifier</button>
-        <button class="primary-btn" (click)="confirmReservation()">Confirmer</button>
+        <button class="btn secondary" (click)="goToStep(1)">Modifier</button>
+        <button class="btn primary" (click)="confirmReservation()">Confirmer</button>
       </div>
 
       @if (errorMessage) {
@@ -67,19 +66,18 @@
     </section>
   }
 
-  <!-- ÉTAPE 3 : CONFIRMATION -->
+  <!-- ÉTAPE 3 -->
   @if (step() === 3 && equipment()) {
-    <section class="section">
+    <section class="section fade-in">
       <h2 class="title">Confirmation</h2>
       <p class="subtitle">
-        Votre réservation de l’équipement {{ equipment()?.name }} est confirmée du
-        <strong>{{ booking.startDate() | date: 'dd/MM/yyyy' }}</strong> au
-        <strong>{{ booking.endDate() | date: 'dd/MM/yyyy' }}</strong
-        >. (Durée : <strong>{{ getDuration() }} jour{{ getDuration() > 1 ? 's' : '' }}</strong
-        >)
+        Votre réservation est confirmée du
+        <strong>{{ booking.startDate() | date: 'dd/MM/yyyy' }}</strong>
+        au <strong>{{ booking.endDate() | date: 'dd/MM/yyyy' }}</strong
+        >.
       </p>
 
-      <button class="primary-btn full" (click)="goToHome()">Retour espace LocMNS</button>
+      <button class="btn primary full" (click)="goToHome()">Retour espace LocMNS</button>
 
       @if (errorMessage) {
         <p class="error-message">{{ errorMessage }}</p>
