@@ -65,7 +65,6 @@ export class EquipmentBooking implements OnInit {
 
     this.booking.setStart(date);
 
-    // Si la date de fin est avant la date de début → reset
     if (this.booking.endDate() && this.booking.endDate()! < date) {
       this.booking.setEnd(null);
     }

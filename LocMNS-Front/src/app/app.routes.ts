@@ -5,39 +5,46 @@ import { Login } from '../pages/login/login.component';
 import { Equipments } from '../pages/equipments/equipments.component';
 import { EquipmentInfo } from '../pages/equipment-info/equipment-info';
 import { EquipmentBooking } from '../pages/equipment-booking/equipment-booking';
+import { UserReservations } from '../pages/user-reservations/user-reservations';
 
 export const routes: Routes = [
-  // Routgae vers la page "Home"
+  // Routage vers la page "Home"
   {
     path: '',
     component: Home,
     title: 'LocMNS - Accueil',
   },
-  // Routgae vers la page "Login"
+  // Routage vers la page "Login"
   {
     path: 'login',
     component: Login,
     title: 'LocMNS - Connexion',
   },
-  // Routgae vers la page "equipments"
+  // Routage vers la page "equipments"
   {
     path: 'equipments',
     component: Equipments,
     title: 'LocMNS - Equipements',
   },
-  // Routgae vers la page "equipment-info"
+  // Routage vers la page "equipment-info"
   {
     path: 'equipment-info/:id',
     component: EquipmentInfo,
     title: 'LocMNS - Informations Equipement',
   },
-  // Routgae vers la page "equipment-booking"
+  // Routage vers la page "equipment-booking"
   {
     path: 'equipment-booking/:id',
     component: EquipmentBooking,
     title: 'LocMNS - Réservation Equipement',
   },
-  // Routgae vers la page "Erreur 404"
+  // Routage vers la page "user-reservations"
+  {
+    path: 'user-reservations/:id',
+    component: UserReservations,
+    title: 'LocMNS - Espace utilisateur',
+  },
+  // Routage vers la page "Erreur 404"
   {
     path: '**',
     component: NotFound,
