@@ -6,6 +6,7 @@ import { LoanCalendarDto } from '../../app/models/loan-calendar-dto';
 import { CommonModule, DatePipe } from '@angular/common';
 import { BookingDatesService } from '../../services/booking-dates.service';
 import { EquipmentService } from '../../services/equipment.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-equipment-booking',
@@ -19,6 +20,7 @@ export class EquipmentBooking implements OnInit {
 
   booking = inject(BookingDatesService);
   equipmentService = inject(EquipmentService);
+  userService = inject(UserService);
 
   equipment = signal<Equipment | null>(null);
   step = signal(1);
@@ -27,7 +29,8 @@ export class EquipmentBooking implements OnInit {
   errorMessage: string | null = null;
 
   goToHome() {
-    this.router.navigate(['/home']);
+    const id = this.userService.userId();
+    this.router.navigate(['/user-dashboard', id]);
   }
 
   goToStep(number: number) {

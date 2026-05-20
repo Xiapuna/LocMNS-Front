@@ -11,32 +11,6 @@
     </button>
   </header>
 
-  <section class="tabs">
-    <button
-      class="tab-btn"
-      [class.active]="activeTab() === ReservationTab.Current"
-      (click)="setTab(ReservationTab.Current)"
-    >
-      En cours
-    </button>
-
-    <button
-      class="tab-btn"
-      [class.active]="activeTab() === ReservationTab.Upcoming"
-      (click)="setTab(ReservationTab.Upcoming)"
-    >
-      À venir
-    </button>
-
-    <button
-      class="tab-btn"
-      [class.active]="activeTab() === ReservationTab.Past"
-      (click)="setTab(ReservationTab.Past)"
-    >
-      Passées
-    </button>
-  </section>
-
   <section class="reservations-list fade-in">
     @if (visibleLoans().length === 0) {
       <p>Aucune réservation.</p>
@@ -58,4 +32,8 @@
       }
     }
   </section>
+
+  <button class="btn primary" [routerLink]="['/user-reservations', userId()]">
+    Voir toutes mes réservations
+  </button>
 </div>

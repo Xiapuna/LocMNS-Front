@@ -6,6 +6,7 @@ import { Equipments } from '../pages/equipments/equipments.component';
 import { EquipmentInfo } from '../pages/equipment-info/equipment-info';
 import { EquipmentBooking } from '../pages/equipment-booking/equipment-booking';
 import { UserReservations } from '../pages/user-reservations/user-reservations';
+import { UserDashboard } from '../pages/user-dashboard/user-dashboard';
 
 export const routes: Routes = [
   // Routage vers la page "Home"
@@ -42,6 +43,12 @@ export const routes: Routes = [
   {
     path: 'user-reservations/:id',
     component: UserReservations,
+    title: 'LocMNS - Réservations utilisateur',
+  },
+  // Routage vers la page "user-dashboard"
+  {
+    path: 'user-dashboard/:id',
+    component: UserDashboard,
     title: 'LocMNS - Espace utilisateur',
   },
   // Routage vers la page "Erreur 404"

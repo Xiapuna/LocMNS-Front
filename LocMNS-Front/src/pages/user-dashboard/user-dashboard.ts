@@ -1,23 +1,23 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { computed } from '@angular/core';
-import { ReservationTab } from '../../app/enums/reservation-tab';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { ReservationTab } from '../../app/enums/reservation-tab';
+import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-user-reservations',
+  selector: 'app-user-dashboard',
   imports: [RouterLink, CommonModule],
-  templateUrl: './user-reservations.html',
-  styleUrl: './user-reservations.css',
+  templateUrl: './user-dashboard.html',
+  styleUrl: './user-dashboard.css',
 })
-export class UserReservations implements OnInit {
+export class UserDashboard implements OnInit {
+  userService = inject(UserService);
+
+  userId = this.userService.userId;
   userLoans = signal<Loan[] | null>(null);
   activeTab = signal<ReservationTab>(ReservationTab.Current);
 
   ReservationTab = ReservationTab;
-
-  userService = inject(UserService);
 
   currentLoans = computed(() => {
     const loans = this.userLoans();
@@ -54,14 +54,12 @@ export class UserReservations implements OnInit {
   });
 
   ngOnInit(): void {
-    const userId = 3; // A changer quand l'authentification sera mise en place
+    this.userService.setUserId(3); // A changer quand l'authentification sera mise en place
 
-    this.userService.getUserLoans(userId).subscribe((loanList) => {
+    const id = this.userService.userId()!;
+
+    this.userService.getUserLoans(id).subscribe((loanList) => {
       this.userLoans.set(loanList);
     });
-  }
-
-  setTab(tab: ReservationTab) {
-    this.activeTab.set(tab);
   }
 }
