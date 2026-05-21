@@ -1,7 +1,7 @@
 <div class="page">
   <header class="header">
     <button class="icon-btn">
-      <span class="material-icons">arrow_back</span>
+      <span class="material-icons" [routerLink]="['/user-dashboard']">arrow_back</span>
     </button>
 
     <h1 class="header-title">Mes réservations</h1>
@@ -53,7 +53,9 @@
               </p>
             </div>
           </div>
-          <button class="btn secondary">Voir</button>
+          <button class="btn secondary" [routerLink]="['/equipment-info/{{ loan.equipment.id }}']">
+            Voir
+          </button>
         </div>
       }
     }

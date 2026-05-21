@@ -8,7 +8,7 @@ import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-user-reservations',
-  imports: [CommonModule],
+  imports: [RouterLink, CommonModule],
   templateUrl: './user-reservations.html',
   styleUrl: './user-reservations.css',
 })

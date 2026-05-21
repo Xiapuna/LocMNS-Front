@@ -33,28 +33,28 @@ export const routes: Routes = [
   },
   // Routage vers la page "equipment-info"
   {
-    path: 'equipment-info/:id',
+    path: 'equipment-info/:equipmentId',
     component: EquipmentInfo,
     canActivate: [userGuard],
     title: 'LocMNS - Informations Equipement',
   },
   // Routage vers la page "equipment-booking"
   {
-    path: 'equipment-booking/:equipmentId/:userId',
+    path: 'equipment-booking/:equipmentId',
     component: EquipmentBooking,
     canActivate: [userGuard],
     title: 'LocMNS - Réservation Equipement',
   },
   // Routage vers la page "user-reservations"
   {
-    path: 'user-reservations/:id',
+    path: 'user-reservations',
     component: UserReservations,
     canActivate: [userGuard],
     title: 'LocMNS - Réservations utilisateur',
   },
   // Routage vers la page "user-dashboard"
   {
-    path: 'user-dashboard/:id',
+    path: 'user-dashboard',
     component: UserDashboard,
     canActivate: [userGuard],
     title: 'LocMNS - Espace utilisateur',

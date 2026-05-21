@@ -13,7 +13,6 @@ export class Equipments implements OnInit {
   equipment = signal<Equipment | null>(null);
   equipments = signal<Equipment[]>([]);
   httpClient = inject(HttpClient);
-  userService = inject(UserService);
   router = inject(Router);
 
   ngOnInit() {
@@ -25,7 +24,6 @@ export class Equipments implements OnInit {
   }
 
   goToBooking(equipmentId: number) {
-    const userId = this.userService.userId()!;
-    this.router.navigate(['/equipment-booking', equipmentId, userId]);
+    this.router.navigate(['/equipment-booking', equipmentId]);
   }
 }

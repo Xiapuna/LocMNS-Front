@@ -27,14 +27,16 @@
               </p>
             </div>
           </div>
-          <button class="btn secondary">Voir</button>
+          <button class="btn secondary" [routerLink]="['/equipment-info/', loan.equipment.id]">
+            Voir
+          </button>
         </div>
       }
     }
   </section>
 
   @if (userId) {
-    <button class="btn primary" [routerLink]="['/user-reservations', userId]">
+    <button class="btn primary" [routerLink]="['/user-reservations']">
       Voir toutes mes réservations
     </button>
   }

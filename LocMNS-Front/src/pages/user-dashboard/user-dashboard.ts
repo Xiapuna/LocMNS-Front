@@ -14,8 +14,6 @@ import { AuthService } from '../../services/auth.service';
 export class UserDashboard implements OnInit {
   userService = inject(UserService);
   authService = inject(AuthService);
-
-  // userId = this.userService.userId;
   userLoans = signal<Loan[] | null>(null);
   activeTab = signal<ReservationTab>(ReservationTab.Current);
 
