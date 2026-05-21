@@ -33,9 +33,7 @@
           <button class="btn secondary" routerLink="/equipment-info/{{ equipment.id }}">
             Plus d’info
           </button>
-          <button class="btn primary" routerLink="/equipment-booking/{{ equipment.id }}">
-            Réserver
-          </button>
+          <button class="btn primary" (click)="goToBooking(equipment.id)">Réserver</button>
         </div>
       </div>
     }

@@ -7,12 +7,15 @@ import { EquipmentInfo } from '../pages/equipment-info/equipment-info';
 import { EquipmentBooking } from '../pages/equipment-booking/equipment-booking';
 import { UserReservations } from '../pages/user-reservations/user-reservations';
 import { UserDashboard } from '../pages/user-dashboard/user-dashboard';
+import { userGuard } from './guards/user-guard';
+import { adminGuard } from './guards/admin-guard';
 
 export const routes: Routes = [
   // Routage vers la page "Home"
   {
     path: '',
     component: Home,
+    canActivate: [userGuard],
     title: 'LocMNS - Accueil',
   },
   // Routage vers la page "Login"
@@ -25,36 +28,42 @@ export const routes: Routes = [
   {
     path: 'equipments',
     component: Equipments,
+    canActivate: [userGuard],
     title: 'LocMNS - Equipements',
   },
   // Routage vers la page "equipment-info"
   {
     path: 'equipment-info/:id',
     component: EquipmentInfo,
+    canActivate: [userGuard],
     title: 'LocMNS - Informations Equipement',
   },
   // Routage vers la page "equipment-booking"
   {
-    path: 'equipment-booking/:id',
+    path: 'equipment-booking/:equipmentId/:userId',
     component: EquipmentBooking,
+    canActivate: [userGuard],
     title: 'LocMNS - Réservation Equipement',
   },
   // Routage vers la page "user-reservations"
   {
     path: 'user-reservations/:id',
     component: UserReservations,
+    canActivate: [userGuard],
     title: 'LocMNS - Réservations utilisateur',
   },
   // Routage vers la page "user-dashboard"
   {
     path: 'user-dashboard/:id',
     component: UserDashboard,
+    canActivate: [userGuard],
     title: 'LocMNS - Espace utilisateur',
   },
   // Routage vers la page "Erreur 404"
   {
     path: '**',
     component: NotFound,
+    canActivate: [userGuard],
     title: '404 - Not Found',
   },
 ];

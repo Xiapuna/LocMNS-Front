@@ -33,7 +33,9 @@
     }
   </section>
 
-  <button class="btn primary" [routerLink]="['/user-reservations', userId()]">
-    Voir toutes mes réservations
-  </button>
+  @if (userId) {
+    <button class="btn primary" [routerLink]="['/user-reservations', userId]">
+      Voir toutes mes réservations
+    </button>
+  }
 </div>

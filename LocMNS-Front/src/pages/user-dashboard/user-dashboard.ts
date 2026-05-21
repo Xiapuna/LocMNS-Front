@@ -3,6 +3,7 @@ import { UserService } from '../../services/user.service';
 import { ReservationTab } from '../../app/enums/reservation-tab';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -12,8 +13,9 @@ import { CommonModule } from '@angular/common';
 })
 export class UserDashboard implements OnInit {
   userService = inject(UserService);
+  authService = inject(AuthService);
 
-  userId = this.userService.userId;
+  // userId = this.userService.userId;
   userLoans = signal<Loan[] | null>(null);
   activeTab = signal<ReservationTab>(ReservationTab.Current);
 
@@ -54,12 +56,21 @@ export class UserDashboard implements OnInit {
   });
 
   ngOnInit(): void {
-    this.userService.setUserId(3); // A changer quand l'authentification sera mise en place
+    const info = this.authService.jwtInfo();
 
-    const id = this.userService.userId()!;
+    if (!info) {
+      console.error("JWT non chargé, impossible de récupérer l'utilisateur");
+      return;
+    }
 
-    this.userService.getUserLoans(id).subscribe((loanList) => {
+    const userId = info.id;
+
+    this.userService.getUserLoans(userId).subscribe((loanList) => {
       this.userLoans.set(loanList);
     });
+  }
+
+  get userId() {
+    return this.authService.jwtInfo()?.id ?? null;
   }
 }

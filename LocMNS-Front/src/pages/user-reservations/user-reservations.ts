@@ -4,10 +4,11 @@ import { computed } from '@angular/core';
 import { ReservationTab } from '../../app/enums/reservation-tab';
 import { UserService } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-user-reservations',
-  imports: [RouterLink, CommonModule],
+  imports: [CommonModule],
   templateUrl: './user-reservations.html',
   styleUrl: './user-reservations.css',
 })
@@ -18,6 +19,7 @@ export class UserReservations implements OnInit {
   ReservationTab = ReservationTab;
 
   userService = inject(UserService);
+  authService = inject(AuthService);
 
   currentLoans = computed(() => {
     const loans = this.userLoans();
@@ -54,7 +56,12 @@ export class UserReservations implements OnInit {
   });
 
   ngOnInit(): void {
-    const userId = 3; // A changer quand l'authentification sera mise en place
+    const userId = this.authService.jwtInfo()?.id;
+
+    if (!userId) {
+      console.error('Impossible de récupérer l’ID utilisateur depuis le JWT');
+      return;
+    }
 
     this.userService.getUserLoans(userId).subscribe((loanList) => {
       this.userLoans.set(loanList);

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-info-equipment',
@@ -11,6 +12,8 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 export class EquipmentInfo implements OnInit {
   route = inject(ActivatedRoute);
   httpClient = inject(HttpClient);
+  userService = inject(UserService);
+  router = inject(Router);
   equipment = signal<Equipment | null>(null);
 
   ngOnInit() {
@@ -21,5 +24,11 @@ export class EquipmentInfo implements OnInit {
         .get<Equipment>('http://localhost:8080/equipment/' + id)
         .subscribe((equipmentInfo) => this.equipment.set(equipmentInfo));
     });
+  }
+
+  goToBooking() {
+    const equipmentId = this.equipment()!.id;
+    const userId = this.userService.userId()!;
+    this.router.navigate(['/equipment-booking', equipmentId, userId]);
   }
 }

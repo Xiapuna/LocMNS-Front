@@ -38,9 +38,7 @@
     </section>
   }
   <footer class="footer">
-    <button class="reserve-btn" routerLink="/equipment-booking/{{ equipment()!.id }}">
-      Réserver
-    </button>
+    <button class="reserve-btn" (click)="goToBooking()">Réserver</button>
 
     <button class="icon-btn refresh">
       <span class="material-icons">refresh</span>

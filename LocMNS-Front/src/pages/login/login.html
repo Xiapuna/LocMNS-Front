@@ -3,15 +3,20 @@
 
   <div class="logo-placeholder"></div>
 
-  <form>
+  <form class="formulaire" [formGroup]="formulaire" (ngSubmit)="onLogin()">
     <div class="form-group">
       <label for="email">Adresse mail</label>
-      <input type="email" id="email" placeholder="Votre adresse mail" />
+      <input type="email" id="email" placeholder="Votre adresse mail" formControlName="email" />
     </div>
 
     <div class="form-group">
       <label for="password">Mot de passe</label>
-      <input type="password" id="password" placeholder="Votre mot de passe" />
+      <input
+        type="password"
+        id="password"
+        placeholder="Votre mot de passe"
+        formControlName="password"
+      />
     </div>
 
     <button type="submit" class="btn">Connexion</button>
