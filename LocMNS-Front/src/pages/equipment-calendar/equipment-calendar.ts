@@ -33,14 +33,15 @@ export class EquipmentCalendar implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if (changes['reservations'] && this.reservations) {
+      this.generateCalendar();
+    }
     if (changes['selectedStart'] && this.selectedStart) {
       const target = new Date(this.selectedStart);
       target.setHours(0, 0, 0, 0);
 
-      // 👉 On positionne le calendrier sur le mois de la date sélectionnée
       this.currentDate.set(new Date(target.getFullYear(), target.getMonth(), 1));
 
-      // 👉 On régénère le calendrier
       this.generateCalendar();
     }
   }

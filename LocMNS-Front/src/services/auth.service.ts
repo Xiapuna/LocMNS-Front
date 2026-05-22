@@ -29,6 +29,11 @@ export class AuthService {
       );
   }
 
+  logout() {
+    this.jwtInfo.set(null);
+    localStorage.removeItem('jwt');
+  }
+
   decodeJwt() {
     const jwt = localStorage.getItem('jwt');
 

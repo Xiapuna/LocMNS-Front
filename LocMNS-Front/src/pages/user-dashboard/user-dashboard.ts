@@ -54,16 +54,14 @@ export class UserDashboard implements OnInit {
   });
 
   ngOnInit(): void {
-    const info = this.authService.jwtInfo();
+    const user = this.authService.jwtInfo();
 
-    if (!info) {
+    if (!user) {
       console.error("JWT non chargé, impossible de récupérer l'utilisateur");
       return;
     }
 
-    const userId = info.id;
-
-    this.userService.getUserLoans(userId).subscribe((loanList) => {
+    this.userService.getUserLoans(user.id).subscribe((loanList) => {
       this.userLoans.set(loanList);
     });
   }

@@ -1,5 +1,17 @@
 <div>
-  <header></header>
+  <header>
+    <div>
+      @if (!authService.jwtInfo()) {
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" routerLinkActive="current-page">Connexion</a>
+        </li>
+      } @else {
+        <li class="nav-item">
+          <button class="nav-link" (click)="logout()">Déconnexion</button>
+        </li>
+      }
+    </div>
+  </header>
 
   <main>
     <router-outlet />

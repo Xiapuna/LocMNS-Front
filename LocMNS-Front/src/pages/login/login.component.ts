@@ -27,13 +27,11 @@ export class Login {
       this.authService
         .login(this.formulaire.value as { email: string; password: string })
         .subscribe({
-          next: (jwt) => {
+          next: () => {
             this.notification.open('Connexion réussie', 'valid');
-            const id = this.authService.jwtInfo()?.id;
-
-            this.router.navigate(['/user-dashboard', id]);
+            this.router.navigate(['/user-dashboard']);
           },
-          error: (err) => {
+          error: () => {
             this.notification.open('Mauvais login / mot de passe', 'error');
           },
         });
