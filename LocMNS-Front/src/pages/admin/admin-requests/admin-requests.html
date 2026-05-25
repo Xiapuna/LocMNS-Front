@@ -1,0 +1,26 @@
+<h2>Demandes de prolongation</h2>
+
+@for (loan of admin.requestedExtensions(); track loan.id) {
+  <div>
+    <p>
+      Prêt #{{ loan.id }} — {{ loan.appUser.firstName }} {{ loan.appUser.name }}
+      <br />
+      Fin actuelle : {{ loan.endDate }}
+    </p>
+
+    <input type="date" [(ngModel)]="loan.newEndDate" />
+    <button (click)="extend(loan)">Valider prolongation</button>
+  </div>
+}
+
+<hr />
+
+<h2>Demandes de retour</h2>
+
+@for (loan of admin.requestedReturns(); track loan.id) {
+  <div>
+    <p>Prêt #{{ loan.id }} — {{ loan.appUser.firstName }} {{ loan.appUser.name }}</p>
+
+    <button (click)="validateReturn(loan)">Valider retour</button>
+  </div>
+}

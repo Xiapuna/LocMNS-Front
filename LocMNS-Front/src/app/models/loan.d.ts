@@ -3,6 +3,7 @@ type Loan = {
   startDate: Date;
   endDate: Date;
   realEndDate: Date;
+  newEndDate: String;
   appUser: AppUser;
   equipment: Equipment;
 };

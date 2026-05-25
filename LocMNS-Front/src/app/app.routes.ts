@@ -9,6 +9,7 @@ import { UserReservations } from '../pages/user-reservations/user-reservations';
 import { UserDashboard } from '../pages/user-dashboard/user-dashboard';
 import { userGuard } from './guards/user-guard';
 import { adminGuard } from './guards/admin-guard';
+import { AdminRequests } from '../pages/admin/admin-requests/admin-requests';
 
 export const routes: Routes = [
   // Routage vers la page "Home"
@@ -57,6 +58,12 @@ export const routes: Routes = [
     path: 'user-dashboard',
     component: UserDashboard,
     canActivate: [userGuard],
+    title: 'LocMNS - Espace utilisateur',
+  },
+  {
+    path: 'admin/requests',
+    component: AdminRequests,
+    canActivate: [adminGuard],
     title: 'LocMNS - Espace utilisateur',
   },
   // Routage vers la page "Erreur 404"
