@@ -10,6 +10,7 @@ export class LoanAdminService {
 
   requestedExtensions = signal<Loan[]>([]);
   requestedReturns = signal<Loan[]>([]);
+  allLoans = signal<Loan[]>([]);
 
   loadRequestedExtensions() {
     this.http
@@ -29,5 +30,13 @@ export class LoanAdminService {
 
   validateReturn(id: number) {
     return this.http.put(`${this.baseUrl}/${id}/return`, {});
+  }
+
+  getAllLoans() {
+    return this.http.get<Loan[]>(`http://localhost:8080/loans`);
+  }
+
+  loadAllLoans() {
+    this.getAllLoans().subscribe((loans) => this.allLoans.set(loans));
   }
 }

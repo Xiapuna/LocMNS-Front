@@ -10,6 +10,7 @@ import { UserDashboard } from '../pages/user-dashboard/user-dashboard';
 import { userGuard } from './guards/user-guard';
 import { adminGuard } from './guards/admin-guard';
 import { AdminRequests } from '../pages/admin/admin-requests/admin-requests';
+import { AdminDashboard } from '../pages/admin/admin-dashboard/admin-dashboard';
 
 export const routes: Routes = [
   // Routage vers la page "Home"
@@ -65,6 +66,12 @@ export const routes: Routes = [
     component: AdminRequests,
     canActivate: [adminGuard],
     title: 'LocMNS - Espace utilisateur',
+  },
+  {
+    path: 'admin-dashboard',
+    component: AdminDashboard,
+    canActivate: [adminGuard],
+    title: 'LocMNS - Espace administrateur',
   },
   // Routage vers la page "Erreur 404"
   {

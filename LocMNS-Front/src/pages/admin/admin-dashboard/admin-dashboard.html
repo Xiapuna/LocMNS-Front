@@ -1,0 +1,29 @@
+<h2>Toutes les réservations</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Utilisateur</th>
+      <th>Équipement</th>
+      <th>Début</th>
+      <th>Fin prévue</th>
+      <th>Retour réel</th>
+      <th>Statut</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (loan of loans(); track loan.id) {
+      <tr>
+        <td>{{ loan.id }}</td>
+        <td>{{ loan.appUser.firstName }} {{ loan.appUser.name }}</td>
+        <td>{{ loan.equipment.name }}</td>
+        <td>{{ loan.startDate }}</td>
+        <td>{{ loan.endDate }}</td>
+        <td>{{ loan.realEndDate ?? '-' }}</td>
+        <td>{{ loan.loanStatus }}</td>
+      </tr>
+    }
+  </tbody>
+</table>

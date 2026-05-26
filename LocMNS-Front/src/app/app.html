@@ -1,21 +1,29 @@
-<div>
-  <header>
-    <div>
-      @if (!authService.jwtInfo()) {
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/login" routerLinkActive="current-page">Connexion</a>
-        </li>
-      } @else {
-        <li class="nav-item">
-          <button class="nav-link" (click)="logout()">Déconnexion</button>
-        </li>
-      }
-    </div>
-  </header>
+<header class="main-header">
+  <div class="header-left">
+    <div class="logo" routerLink="/home">LocMNS</div>
+  </div>
 
-  <main>
-    <router-outlet />
-  </main>
+  <nav class="header-nav">
+    @if (authService.jwtInfo()) {
+      <a routerLink="/user-dashboard" routerLinkActive="active-link">Accueil</a>
+    }
 
-  <footer></footer>
-</div>
+    @if (!authService.jwtInfo()) {
+      <a routerLink="/login" routerLinkActive="active-link">Se connecter</a>
+    } @else {
+      <button class="logout-btn" (click)="logout()">Déconnexion</button>
+    }
+
+    @if (authService.isAdmin()) {
+      <a routerLink="/admin-dashboard" routerLinkActive="active-link">Admin</a>
+    }
+  </nav>
+</header>
+
+<main class="page-container">
+  <router-outlet />
+</main>
+
+<footer class="main-footer">
+  <p>© 2026 LocMNS — Metz Numeric School</p>
+</footer>

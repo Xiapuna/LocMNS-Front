@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import { map, tap } from 'rxjs';
 
 type JwtInfo = { sub: string; role: string; id: number };
@@ -10,6 +11,9 @@ type JwtInfo = { sub: string; role: string; id: number };
 export class AuthService {
   readonly jwtInfo = signal<JwtInfo | null>(null);
   httpClient = inject(HttpClient);
+  router = inject(Router);
+
+  isAdmin = computed(() => this.jwtInfo()?.role === 'ADMIN');
 
   constructor() {
     this.decodeJwt();
@@ -30,8 +34,9 @@ export class AuthService {
   }
 
   logout() {
-    this.jwtInfo.set(null);
     localStorage.removeItem('jwt');
+    this.jwtInfo.set(null);
+    this.router.navigate(['/login']);
   }
 
   decodeJwt() {
