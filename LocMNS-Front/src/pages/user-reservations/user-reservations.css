@@ -67,3 +67,38 @@
   font-size: 14px;
   color: var(--gray);
 }
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 6px;
+}
+
+/* VALIDATED */
+.status-badge.validated {
+  background-color: #007bff;
+}
+
+/* ONGOING */
+.status-badge.ongoing {
+  background-color: #28a745;
+}
+
+/* RETURNED */
+.status-badge.returned {
+  background-color: #6c757d;
+}
+
+/* REQUESTED_RETURN */
+.status-badge.requested_return {
+  background-color: #ff9800;
+}
+
+/* REQUESTED_EXTENSION */
+.status-badge.requested_extension {
+  background-color: #9c27b0;
+}

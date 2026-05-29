@@ -47,6 +47,9 @@
             <img class="equip-icon" src="assets/icons/laptop.svg" alt="icon" />
             <div class="reservation-text">
               <h3 class="reservation-title">{{ loan.equipment.name }}</h3>
+              <span class="status-badge {{ loan.loanStatus | lowercase }}">
+                {{ loan.loanStatus }}
+              </span>
               <p class="reservation-dates">
                 Du {{ loan.startDate | date: 'dd/MM/yyyy' }} au
                 {{ loan.endDate | date: 'dd/MM/yyyy' }}
