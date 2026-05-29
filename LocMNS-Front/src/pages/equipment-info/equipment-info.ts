@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-info-equipment',
@@ -19,7 +20,7 @@ export class EquipmentInfo implements OnInit {
       const equipmentId = +params['equipmentId'];
 
       this.httpClient
-        .get<Equipment>('http://localhost:8080/equipment/' + equipmentId)
+        .get<Equipment>(`${environment.serverUrl}/equipment/${equipmentId}`)
         .subscribe((equipmentInfo) => this.equipment.set(equipmentInfo));
     });
   }

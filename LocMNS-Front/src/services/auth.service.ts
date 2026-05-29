@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, tap } from 'rxjs';
+import { environment } from '../environments/environment';
 
 type JwtInfo = { sub: string; role: string; id: number };
 
@@ -21,7 +22,7 @@ export class AuthService {
 
   login(credentials: { email: string; password: string }) {
     return this.httpClient
-      .post('http://localhost:8080/login', credentials, {
+      .post(`${environment.serverUrl}/login`, credentials, {
         responseType: 'text',
       })
       .pipe(

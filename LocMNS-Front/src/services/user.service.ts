@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { map } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +31,7 @@ export class UserService {
 
   getUserLoans(id: number) {
     return this.httpClient
-      .get<Loan[]>('http://localhost:8080/appuser/' + id + '/loans')
+      .get<Loan[]>(`${environment.serverUrl}/appuser/${id}/loans`)
       .pipe(map((loans) => this.normalizeLoans(loans)));
   }
 
