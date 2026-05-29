@@ -42,6 +42,15 @@ export class UserReservations implements OnInit {
     return this.userService.getPastLoans(loans);
   });
 
+  pendingLoans = computed(() => {
+    const loans = this.userLoans();
+    if (!loans) return [];
+
+    return loans.filter(
+      (l) => l.loanStatus === 'REQUESTED_RETURN' || l.loanStatus === 'REQUESTED_EXTENSION',
+    );
+  });
+
   visibleLoans = computed(() => {
     switch (this.activeTab()) {
       case ReservationTab.Current:
@@ -50,12 +59,22 @@ export class UserReservations implements OnInit {
         return this.upcomingLoans();
       case ReservationTab.Past:
         return this.pastLoans();
+      case ReservationTab.Pending:
+        return this.pendingLoans();
       default:
         return [];
     }
   });
 
   ngOnInit(): void {
+    this.loadReservations();
+  }
+
+  setTab(tab: ReservationTab) {
+    this.activeTab.set(tab);
+  }
+
+  loadReservations() {
     const userId = this.authService.jwtInfo()?.id;
 
     if (!userId) {
@@ -68,7 +87,15 @@ export class UserReservations implements OnInit {
     });
   }
 
-  setTab(tab: ReservationTab) {
-    this.activeTab.set(tab);
+  requestReturn(loanId: number) {
+    this.userService.requestReturn(loanId).subscribe(() => {
+      this.loadReservations();
+    });
+  }
+
+  requestExtension(loanId: number) {
+    this.userService.requestExtension(loanId).subscribe(() => {
+      this.loadReservations();
+    });
   }
 }

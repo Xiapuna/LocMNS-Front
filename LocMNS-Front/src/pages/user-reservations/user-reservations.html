@@ -35,6 +35,14 @@
     >
       Passées
     </button>
+
+    <button
+      class="tab-btn"
+      [class.active]="activeTab() === ReservationTab.Pending"
+      (click)="setTab(ReservationTab.Pending)"
+    >
+      En attente
+    </button>
   </section>
 
   <section class="reservations-list fade-in">
@@ -56,6 +64,27 @@
               </p>
             </div>
           </div>
+
+          <div class="reservation-actions">
+            @if (loan.loanStatus === 'ONGOING' || loan.loanStatus === 'VALIDATED') {
+              <button class="btn primary" (click)="requestReturn(loan.id)">
+                Demander un retour
+              </button>
+
+              <button class="btn secondary" (click)="requestExtension(loan.id)">
+                Demander une extension
+              </button>
+            }
+
+            @if (loan.loanStatus === 'REQUESTED_RETURN') {
+              <span class="info-text">Retour demandé</span>
+            }
+
+            @if (loan.loanStatus === 'REQUESTED_EXTENSION') {
+              <span class="info-text">Extension demandée</span>
+            }
+          </div>
+
           <button class="btn secondary" [routerLink]="['/equipment-info/', loan.equipment.id]">
             Voir
           </button>

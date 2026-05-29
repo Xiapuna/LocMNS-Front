@@ -54,4 +54,12 @@ export class UserService {
   getPastLoans(loans: Loan[]): Loan[] {
     return loans.filter((l) => l.loanStatus === 'RETURNED');
   }
+
+  requestReturn(loanId: number) {
+    return this.httpClient.post(`${environment.serverUrl}/loan/${loanId}/request-return`, {});
+  }
+
+  requestExtension(loanId: number) {
+    return this.httpClient.post(`${environment.serverUrl}/loan/${loanId}/request-extension`, {});
+  }
 }
