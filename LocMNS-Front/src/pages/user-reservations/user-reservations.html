@@ -56,7 +56,7 @@
             <div class="reservation-text">
               <h3 class="reservation-title">{{ loan.equipment.name }}</h3>
               <span class="status-badge {{ loan.loanStatus | lowercase }}">
-                {{ loan.loanStatus }}
+                {{ loan.loanStatus | loanStatusLabel }}
               </span>
               <p class="reservation-dates">
                 Du {{ loan.startDate | date: 'dd/MM/yyyy' }} au

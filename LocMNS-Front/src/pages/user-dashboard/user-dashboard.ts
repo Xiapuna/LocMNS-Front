@@ -4,10 +4,11 @@ import { ReservationTab } from '../../app/enums/reservation-tab';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { LoanStatusLabelPipe } from '../../app/pipes/loan-status-label.pipe';
 
 @Component({
   selector: 'app-user-dashboard',
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, LoanStatusLabelPipe],
   templateUrl: './user-dashboard.html',
   styleUrl: './user-dashboard.css',
 })

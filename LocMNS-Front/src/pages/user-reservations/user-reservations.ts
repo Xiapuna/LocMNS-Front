@@ -5,10 +5,11 @@ import { ReservationTab } from '../../app/enums/reservation-tab';
 import { UserService } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { LoanStatusLabelPipe } from '../../app/pipes/loan-status-label.pipe';
 
 @Component({
   selector: 'app-user-reservations',
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, LoanStatusLabelPipe],
   templateUrl: './user-reservations.html',
   styleUrl: './user-reservations.css',
 })

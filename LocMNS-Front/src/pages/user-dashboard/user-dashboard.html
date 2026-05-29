@@ -1,14 +1,6 @@
 <div class="page">
   <header class="header">
-    <button class="icon-btn">
-      <span class="material-icons">arrow_back</span>
-    </button>
-
-    <h1 class="header-title">Mes réservations</h1>
-
-    <button class="icon-btn">
-      <span class="material-icons">account_circle</span>
-    </button>
+    <h1 class="header-title">Mes réservations en cours</h1>
   </header>
 
   <section class="reservations-list fade-in">
@@ -22,7 +14,7 @@
             <div class="reservation-text">
               <h3 class="reservation-title">{{ loan.equipment.name }}</h3>
               <span class="status-badge {{ loan.loanStatus | lowercase }}">
-                {{ loan.loanStatus }}
+                {{ loan.loanStatus | loanStatusLabel }}
               </span>
 
               <p class="reservation-dates">
@@ -43,5 +35,6 @@
     <button class="btn primary" [routerLink]="['/user-reservations']">
       Voir toutes mes réservations
     </button>
+    <button class="btn primary" [routerLink]="['/equipments']">Réserver un équipement</button>
   }
 </div>

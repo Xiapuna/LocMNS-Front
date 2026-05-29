@@ -5,6 +5,7 @@ import { LoanCalendarDto } from '../../app/models/loan-calendar-dto';
 import { CommonModule, DatePipe } from '@angular/common';
 import { BookingDatesService } from '../../services/booking-dates.service';
 import { EquipmentService } from '../../services/equipment.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-equipment-booking',
@@ -16,6 +17,7 @@ export class EquipmentBooking implements OnInit {
   route = inject(ActivatedRoute);
   router = inject(Router);
 
+  authService = inject(AuthService);
   booking = inject(BookingDatesService);
   equipmentService = inject(EquipmentService);
 
@@ -102,9 +104,16 @@ export class EquipmentBooking implements OnInit {
     const equipmentId = this.equipment()!.id;
     const start = this.booking.startDate()!;
     const end = this.booking.endDate()!;
-    const appUserId = 1;
+
+    const appUserId = this.authService.jwtInfo()?.id;
+
     const formatDate = (d: Date) =>
       `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
+    if (!appUserId) {
+      this.errorMessage = "Impossible de récupérer l'utilisateur connecté.";
+      return;
+    }
 
     this.equipmentService.createLoan(equipmentId, start, end, appUserId).subscribe({
       next: () => {
