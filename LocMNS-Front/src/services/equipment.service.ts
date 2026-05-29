@@ -10,7 +10,7 @@ export class EquipmentService {
   httpClient = inject(HttpClient);
 
   getEquipment(id: number) {
-    return this.httpClient.get<Equipment>(`${environment.serverUrl}}/equipment/${id}`);
+    return this.httpClient.get<Equipment>(`${environment.serverUrl}/equipment/${id}`);
   }
 
   getEquipmentLoans(id: number) {

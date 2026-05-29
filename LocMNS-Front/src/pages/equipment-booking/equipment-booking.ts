@@ -1,5 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, inject, OnInit, signal, SimpleChanges } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EquipmentCalendar } from '../equipment-calendar/equipment-calendar';
 import { LoanCalendarDto } from '../../app/models/loan-calendar-dto';

@@ -1,3 +1,3 @@
 export const environment = {
-  serverUrl: 'http://lockmns.com:8080',
+  serverUrl: 'http://locmns.com:8080',
 };

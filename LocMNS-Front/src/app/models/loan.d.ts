@@ -1,10 +1,10 @@
 type Loan = {
   id: number;
-  startDate: Date;
-  endDate: Date;
-  realEndDate: Date;
-  newEndDate: String;
-  loanStatus: String;
+  startDate: string;
+  endDate: string;
+  realEndDate: string | null;
+  newEndDate?: string;
+  loanStatus: string;
   appUser: AppUser;
   equipment: Equipment;
 };
