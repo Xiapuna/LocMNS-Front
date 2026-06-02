@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class App {
   authService = inject(AuthService);
+
   protected readonly title = signal('LocMNS');
 
   logout() {
