@@ -16,7 +16,7 @@ jobs:
         run: docker build -t xiapuna/locmns-front -f ./LocMNS-Front/Dockerfile ./LocMNS-Front
 
       - name: extract version from package.json
-        run: echo "VERSION=$(jq -r '.version' package.json)" >> $GITHUB_ENV
+        run: echo "VERSION=$(jq -r '.version' LocMNS-FRONT/package.json)" >> $GITHUB_ENV
 
       - name: TAG the Docker image
         run: docker tag xiapuna/locmns-front xiapuna/locmns-front:${{ env.VERSION }}
