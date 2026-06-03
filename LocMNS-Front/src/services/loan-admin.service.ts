@@ -33,11 +33,24 @@ export class LoanAdminService {
     return this.http.put(`${this.baseUrl}/${id}/return`, {});
   }
 
-  getAllLoans() {
-    return this.http.get<Loan[]>(`${this.baseUrl}`);
-  }
-
   loadAllLoans() {
-    this.getAllLoans().subscribe((loans) => this.allLoans.set(loans));
+    this.http.get<Loan[]>(this.baseUrl).subscribe((loans) => {
+      const statusOrder: Record<string, number> = {
+        ONGOING: 1,
+        REQUESTED_RETURN: 2,
+        REQUESTED_EXTENSION: 3,
+        VALIDATED: 4,
+        RETURNED: 5,
+      };
+
+      const sorted = loans.sort((a, b) => {
+        const statusDiff = statusOrder[a.loanStatus] - statusOrder[b.loanStatus];
+        if (statusDiff !== 0) return statusDiff;
+
+        return new Date(b.startDate).getTime() - new Date(a.startDate).getTime();
+      });
+
+      this.allLoans.set(sorted);
+    });
   }
 }
