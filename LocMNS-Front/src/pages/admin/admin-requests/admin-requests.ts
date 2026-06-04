@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LoanAdminService } from '../../../services/loan-admin.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-admin-requests',
-  imports: [FormsModule],
+  imports: [FormsModule, DatePipe],
   templateUrl: './admin-requests.html',
   styleUrl: './admin-requests.css',
 })

@@ -70,4 +70,11 @@ export class UserDashboard implements OnInit {
   get userId() {
     return this.authService.jwtInfo()?.id ?? null;
   }
+
+  get userName() {
+    const user = this.authService.jwtInfo();
+    if (!user) return null;
+
+    return `${user.firstname} ${user.name}`;
+  }
 }

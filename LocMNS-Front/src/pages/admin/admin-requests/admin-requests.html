@@ -1,26 +1,32 @@
-<h2>Demandes de prolongation</h2>
+<div class="page fade-in">
+  <section class="request-card">
+    <h2>Demandes de prolongation</h2>
 
-@for (loan of admin.requestedExtensions(); track loan.id) {
-  <div>
-    <p>
-      Prêt #{{ loan.id }} — {{ loan.appUser.firstName }} {{ loan.appUser.name }}
-      <br />
-      Fin actuelle : {{ loan.endDate }}
-    </p>
+    @for (loan of admin.requestedExtensions(); track loan.id) {
+      <div class="request-item">
+        <p class="request-info">
+          Prêt #{{ loan.id }} — {{ loan.appUser.firstName }} {{ loan.appUser.name }}<br />
+          Fin actuelle : {{ loan.endDate | date: 'dd/MM/yyyy' }}
+        </p>
 
-    <input type="date" [(ngModel)]="loan.newEndDate" />
-    <button (click)="extend(loan)">Valider prolongation</button>
-  </div>
-}
+        <input type="date" [(ngModel)]="loan.newEndDate" class="date-input" />
 
-<hr />
+        <button class="btn primary" (click)="extend(loan)">Valider prolongation</button>
+      </div>
+    }
+  </section>
 
-<h2>Demandes de retour</h2>
+  <section class="request-card">
+    <h2>Demandes de retour</h2>
 
-@for (loan of admin.requestedReturns(); track loan.id) {
-  <div>
-    <p>Prêt #{{ loan.id }} — {{ loan.appUser.firstName }} {{ loan.appUser.name }}</p>
+    @for (loan of admin.requestedReturns(); track loan.id) {
+      <div class="request-item">
+        <p class="request-info">
+          Prêt #{{ loan.id }} — {{ loan.appUser.firstName }} {{ loan.appUser.name }}
+        </p>
 
-    <button (click)="validateReturn(loan)">Valider retour</button>
-  </div>
-}
+        <button class="btn primary" (click)="validateReturn(loan)">Valider retour</button>
+      </div>
+    }
+  </section>
+</div>

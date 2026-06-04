@@ -1,80 +1,58 @@
-.page {
-  padding: 16px;
-  font-family: Arial, sans-serif;
-  color: #333;
-}
-
-.header {
+.equipment-images {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 1.5rem;
 }
 
-.icon-btn {
-  background: none;
-  border: none;
-  padding: 8px;
-  cursor: pointer;
+.image-large,
+.image-small {
+  background: var(--color-surface-alt);
+  border-radius: var(--radius-lg);
 }
 
-.images {
-  margin: 20px 0;
-}
-
-.img-placeholder {
-  width: 100%;
+.image-large {
   height: 180px;
-  background: #e6e6e6;
-  border-radius: 8px;
 }
 
-.img-placeholder.small {
-  margin-top: 10px;
+.image-small {
   height: 80px;
 }
 
-.info-block {
-  margin-top: 20px;
+.equipment-details {
+  margin-bottom: 2rem;
 }
 
 .equipment-title {
   font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 6px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--color-text);
 }
 
-.sub-info {
+.equipment-meta {
   font-size: 14px;
-  color: #666;
-  margin: 2px 0;
+  color: var(--color-text-muted);
+  margin: 4px 0;
 }
 
-.description {
-  margin-top: 12px;
+.accred {
+  background: var(--color-surface-alt);
+  padding: 2px 6px;
+  border-radius: var(--radius-md);
+  margin-right: 4px;
+  font-size: 12px;
+}
+
+.equipment-description {
+  margin-top: 1rem;
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.5;
+  color: var(--color-text);
 }
 
-.footer {
-  margin-top: 30px;
+.equipment-footer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.reserve-btn {
-  flex: 1;
-  padding: 12px;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.refresh {
-  margin-left: 12px;
-  background: #f0f0f0;
-  border-radius: 6px;
+  gap: 10px;
+  margin-top: 2rem;
 }

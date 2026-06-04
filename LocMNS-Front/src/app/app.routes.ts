@@ -62,7 +62,7 @@ export const routes: Routes = [
     title: 'LocMNS - Espace utilisateur',
   },
   {
-    path: 'admin/requests',
+    path: 'admin-requests',
     component: AdminRequests,
     canActivate: [adminGuard],
     title: 'LocMNS - Espace utilisateur',

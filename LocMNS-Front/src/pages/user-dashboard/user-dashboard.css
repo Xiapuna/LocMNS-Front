@@ -32,3 +32,8 @@
 .status-badge.requested_extension {
   background-color: #9c27b0;
 }
+
+.reservation-card:hover {
+  border-left: 3px solid var(--color-accent);
+  padding-left: 13px;
+}

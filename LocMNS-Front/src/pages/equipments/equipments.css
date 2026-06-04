@@ -1,45 +1,16 @@
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.actions {
+.actions-bar {
   display: flex;
   gap: 10px;
+  margin-bottom: 1.5rem;
 }
 
-.equipments-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 20px;
-}
-
-.equipment-card {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding: 16px;
-}
-
-.equipment-info {
+.actions-bar .btn {
   display: flex;
   align-items: center;
-  gap: 14px;
-}
-
-.equip-icon {
-  width: 40px;
-}
-
-.equipment-text {
-  display: flex;
-  flex-direction: column;
+  gap: 6px;
 }
 
 .equipment-actions {
   display: flex;
-  gap: 12px;
+  gap: 10px;
 }

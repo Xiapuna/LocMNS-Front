@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { map, tap } from 'rxjs';
 import { environment } from '../environments/environment';
 
-type JwtInfo = { sub: string; role: string; id: number };
+type JwtInfo = { sub: string; role: string; id: number; firstname: string; name: string };
 
 @Injectable({
   providedIn: 'root',

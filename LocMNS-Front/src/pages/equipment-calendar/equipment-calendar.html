@@ -1,11 +1,15 @@
-<div class="calendar">
-  <div class="header">
-    <button (click)="prevMonth()">‹</button>
+<div class="calendar-card fade-in">
+  <!-- Header -->
+  <div class="calendar-header">
+    <button class="btn ghost small" (click)="prevMonth()">←</button>
+
     <h2>{{ currentDate() | date: 'MMMM yyyy' }}</h2>
-    <button (click)="nextMonth()">›</button>
+
+    <button class="btn ghost small" (click)="nextMonth()">→</button>
   </div>
 
-  <div class="weekdays">
+  <!-- Weekdays -->
+  <div class="calendar-weekdays">
     <div>Lun</div>
     <div>Mar</div>
     <div>Mer</div>
@@ -15,14 +19,15 @@
     <div>Dim</div>
   </div>
 
-  <div class="weeks">
+  <!-- Days -->
+  <div class="calendar-weeks">
     @for (week of weeks; track $index) {
-      <div class="week">
+      <div class="calendar-week">
         @for (day of week; track $index) {
           <div
-            class="day"
-            [class.reserved]="day.reserved"
+            class="calendar-day"
             [class.other-month]="day.date.getMonth() !== currentDate().getMonth()"
+            [class.reserved]="day.reserved"
             [class.available]="!day.reserved"
             [class.selected]="isSelected(day.date)"
             [class.past]="isPast(day.date)"

@@ -1,41 +1,49 @@
-<div class="page">
-  <header class="header">
-    <img src="assets/icons/menu.svg" alt="menu" class="icon-btn" />
-    <h1 class="header-title">Réservation LocMNS</h1>
-    <img src="assets/icons/user.svg" alt="profil" class="icon-btn" />
+<div class="page fade-in">
+  <header class="page-header">
+    <h1>Liste des équipements</h1>
+    <p>{{ equipments().length }} équipement(s) disponible(s)</p>
   </header>
 
-  <div class="section-header">
-    <h2 class="title">Liste des équipements</h2>
+  <div class="actions-bar">
+    <button class="btn ghost">
+      <img src="assets/icons/search.svg" alt="search" width="18" />
+      Rechercher
+    </button>
 
-    <div class="actions">
-      <button class="icon-btn">
-        <img src="assets/icons/search.svg" alt="search" />
-      </button>
-      <button class="icon-btn">
-        <img src="assets/icons/filter.svg" alt="filter" />
-      </button>
-    </div>
+    <button class="btn ghost">
+      <img src="assets/icons/filter.svg" alt="filter" width="18" />
+      Filtrer
+    </button>
   </div>
 
-  <div class="equipments-list fade-in">
-    @for (equipment of equipments(); track equipment.id) {
-      <div class="equipment-card">
-        <div class="equipment-info">
-          <img src="assets/icons/laptop.svg" class="equip-icon" />
-          <div class="equipment-text">
-            <span class="equip-name">{{ equipment.name }}</span>
-            <span class="equip-location">{{ equipment.location.name }}</span>
+  <section class="equipments-list fade-in">
+    @if (equipments().length === 0) {
+      <div class="empty-state">
+        <p>Aucun équipement disponible.</p>
+      </div>
+    } @else {
+      @for (equipment of equipments(); track equipment.id) {
+        <div class="reservation-card">
+          <div class="equip-icon">
+            <img src="assets/icons/laptop.svg" [alt]="equipment.name" width="22" height="22" />
+          </div>
+
+          <div class="reservation-info">
+            <h3 class="reservation-title">{{ equipment.name }}</h3>
+            <p class="reservation-dates">
+              {{ equipment.location.name }}
+            </p>
+          </div>
+
+          <div class="equipment-actions">
+            <button class="btn secondary" [routerLink]="['/equipment-info/', equipment.id]">
+              Plus d’info
+            </button>
+
+            <button class="btn primary" (click)="goToBooking(equipment.id)">Réserver</button>
           </div>
         </div>
-
-        <div class="equipment-actions">
-          <button class="btn secondary" [routerLink]="['/equipment-info/', equipment.id]">
-            Plus d’info
-          </button>
-          <button class="btn primary" (click)="goToBooking(equipment.id)">Réserver</button>
-        </div>
-      </div>
+      }
     }
-  </div>
+  </section>
 </div>

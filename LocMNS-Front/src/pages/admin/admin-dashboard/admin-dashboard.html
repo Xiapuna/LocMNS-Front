@@ -1,29 +1,41 @@
-<h2>Toutes les réservations</h2>
+<div class="page fade-in">
+  <header class="page-header">
+    <h1>Toutes les réservations</h1>
+    <p>{{ loans().length }} réservation(s)</p>
+  </header>
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Utilisateur</th>
-      <th>Équipement</th>
-      <th>Début</th>
-      <th>Fin prévue</th>
-      <th>Retour réel</th>
-      <th>Statut</th>
-    </tr>
-  </thead>
+  <section class="admin-card">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Utilisateur</th>
+          <th>Équipement</th>
+          <th>Début</th>
+          <th>Fin prévue</th>
+          <th>Retour réel</th>
+          <th>Statut</th>
+        </tr>
+      </thead>
 
-  <tbody>
-    @for (loan of loans(); track loan.id) {
-      <tr>
-        <td>{{ loan.id }}</td>
-        <td>{{ loan.appUser.firstName }} {{ loan.appUser.name }}</td>
-        <td>{{ loan.equipment.name }}</td>
-        <td>{{ loan.startDate }}</td>
-        <td>{{ loan.endDate }}</td>
-        <td>{{ loan.realEndDate ?? '-' }}</td>
-        <td>{{ loan.loanStatus }}</td>
-      </tr>
-    }
-  </tbody>
-</table>
+      <tbody>
+        @for (loan of loans(); track loan.id) {
+          <tr>
+            <td>{{ loan.id }}</td>
+            <td>{{ loan.appUser.firstName }} {{ loan.appUser.name }}</td>
+            <td>{{ loan.equipment.name }}</td>
+            <td>{{ loan.startDate | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ loan.endDate | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ loan.realEndDate ? (loan.realEndDate | date: 'dd/MM/yyyy') : '-' }}</td>
+
+            <td>
+              <span class="status-badge" [class]="loan.loanStatus.toLowerCase()">
+                {{ loan.loanStatus }}
+              </span>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </section>
+</div>
