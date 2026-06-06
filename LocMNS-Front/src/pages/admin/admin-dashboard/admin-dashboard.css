@@ -117,3 +117,29 @@
 .status-badge.requested_extension::before {
   background: var(--color-req-ext-text);
 }
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.page-header h1 {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.page-header .btn {
+  margin-left: auto;
+}
+
+.page-header p {
+  width: 100%;
+  margin-top: 0.5rem;
+  font-size: 14px;
+  color: var(--color-text-muted);
+}

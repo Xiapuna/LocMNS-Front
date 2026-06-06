@@ -6,8 +6,14 @@
   </header>
 
   <section class="equipment-images">
-    <div class="image-large"></div>
-    <div class="image-small"></div>
+    <div class="image-large">
+      <img
+        [src]="equipment()!.model.type.id | equipmentImage"
+        [alt]="equipment()!.name"
+        width="150"
+        height="150"
+      />
+    </div>
   </section>
 
   @if (equipment()) {

@@ -25,7 +25,12 @@
       @for (equipment of equipments(); track equipment.id) {
         <div class="reservation-card">
           <div class="equip-icon">
-            <img src="assets/icons/laptop.svg" [alt]="equipment.name" width="22" height="22" />
+            <img
+              [src]="equipment.model.type.id | equipmentImage"
+              [alt]="equipment.name"
+              width="60"
+              height="60"
+            />
           </div>
 
           <div class="reservation-info">

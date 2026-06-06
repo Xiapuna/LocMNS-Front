@@ -2,7 +2,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'loanStatusLabel',
-  standalone: true,
 })
 export class LoanStatusLabelPipe implements PipeTransform {
   transform(status: string): string {

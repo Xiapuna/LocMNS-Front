@@ -2,10 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { environment } from '../../environments/environment';
+import { EquipmentImagePipe } from '../../app/pipes/equipment-image.pipe';
 
 @Component({
   selector: 'app-equipments',
-  imports: [RouterLink],
+  imports: [RouterLink, EquipmentImagePipe],
   templateUrl: './equipments.html',
   styleUrl: './equipments.css',
 })
