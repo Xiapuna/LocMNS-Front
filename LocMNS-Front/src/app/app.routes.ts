@@ -11,6 +11,7 @@ import { userGuard } from './guards/user-guard';
 import { adminGuard } from './guards/admin-guard';
 import { AdminRequests } from '../pages/admin/admin-requests/admin-requests';
 import { AdminDashboard } from '../pages/admin/admin-dashboard/admin-dashboard';
+import { AdminLoanHistory } from '../pages/admin/admin-loan-history/admin-loan-history';
 
 export const routes: Routes = [
   // Routage vers la page "Home"
@@ -70,6 +71,12 @@ export const routes: Routes = [
   {
     path: 'admin-dashboard',
     component: AdminDashboard,
+    canActivate: [adminGuard],
+    title: 'LocMNS - Espace administrateur',
+  },
+  {
+    path: 'admin-loan-history/:loanId',
+    component: AdminLoanHistory,
     canActivate: [adminGuard],
     title: 'LocMNS - Espace administrateur',
   },

@@ -12,6 +12,7 @@ export class LoanAdminService {
   requestedExtensions = signal<Loan[]>([]);
   requestedReturns = signal<Loan[]>([]);
   allLoans = signal<Loan[]>([]);
+  loanHistory = signal<LoanHistory[]>([]);
 
   loadRequestedExtensions() {
     this.http
@@ -23,6 +24,10 @@ export class LoanAdminService {
     this.http
       .get<Loan[]>(`${this.baseUrl}?status=REQUESTED_RETURN`)
       .subscribe(this.requestedReturns.set);
+  }
+
+  loadLoanHistory(id: number) {
+    this.http.get<LoanHistory[]>(`${this.baseUrl}/${id}/history`).subscribe(this.loanHistory.set);
   }
 
   extendLoan(id: number, newEndDate: string) {

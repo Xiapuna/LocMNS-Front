@@ -45,6 +45,10 @@
                 {{ loan.loanStatus }}
               </span>
             </td>
+
+            <td>
+              <button class="btn primary" (click)="loanHistory(loan.id)">Historique</button>
+            </td>
           </tr>
         }
       </tbody>
