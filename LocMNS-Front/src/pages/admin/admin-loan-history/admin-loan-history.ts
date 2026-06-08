@@ -17,11 +17,7 @@ export class AdminLoanHistory {
     this.route.params.subscribe((parameter) => {
       const id = +parameter['id'];
 
-      if (Number.isNaN(id)) {
-        alert('ID non valide');
-      } else {
-        this.admin.loadLoanHistory(loan.id);
-      }
+      this.admin.loadLoanHistory(loan.id);
     });
   }
 }
