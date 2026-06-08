@@ -13,11 +13,9 @@ export class AdminLoanHistory {
   admin = inject(LoanAdminService);
   route = inject(ActivatedRoute);
 
-  ngOnInit(loan: any) {
-    this.route.params.subscribe((parameter) => {
-      const id = +parameter['id'];
+  ngOnInit() {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
 
-      this.admin.loadLoanHistory(loan.id);
-    });
+    this.admin.loadLoanHistory(id);
   }
 }

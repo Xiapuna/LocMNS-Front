@@ -1,6 +1,41 @@
 <div class="page admin-page fade-in">
   <header class="page-header">
     <h1>Toutes les réservations</h1>
+  </header>
+
+  <nav class="tabs pills">
+    <button
+      class="tab-pill"
+      [class.active]="activeTab() === ReservationTab.All"
+      (click)="setTab(ReservationTab.All)"
+    >
+      Toutes les réservations
+    </button>
+
+    <button
+      class="tab-pill"
+      [class.active]="activeTab() === ReservationTab.Current"
+      (click)="setTab(ReservationTab.Current)"
+    >
+      En cours
+    </button>
+
+    <button
+      class="tab-pill"
+      [class.active]="activeTab() === ReservationTab.Upcoming"
+      (click)="setTab(ReservationTab.Upcoming)"
+    >
+      À venir
+    </button>
+
+    <button
+      class="tab-pill"
+      [class.active]="activeTab() === ReservationTab.Past"
+      (click)="setTab(ReservationTab.Past)"
+    >
+      Passées
+    </button>
+
     <button class="btn primary" [routerLink]="['/admin-requests']">
       <svg
         width="16"
@@ -13,45 +48,49 @@
       ></svg>
       Demandes en attentes
     </button>
-    <p>{{ loans().length }} réservation(s)</p>
-  </header>
+  </nav>
+
+  <p class="tab-count">{{ visibleLoans().length }} réservation(s)</p>
 
   <section class="admin-card">
-    <table class="admin-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Utilisateur</th>
-          <th>Équipement</th>
-          <th>Début</th>
-          <th>Fin prévue</th>
-          <th>Retour réel</th>
-          <th>Statut</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        @for (loan of loans(); track loan.id) {
+    @if (visibleLoans().length === 0) {
+      <p class="empty-state">Aucune réservation.</p>
+    } @else {
+      <table class="admin-table">
+        <thead>
           <tr>
-            <td>{{ loan.id }}</td>
-            <td>{{ loan.appUser.firstName }} {{ loan.appUser.name }}</td>
-            <td>{{ loan.equipment.name }}</td>
-            <td>{{ loan.startDate | date: 'dd/MM/yyyy' }}</td>
-            <td>{{ loan.endDate | date: 'dd/MM/yyyy' }}</td>
-            <td>{{ loan.realEndDate ? (loan.realEndDate | date: 'dd/MM/yyyy') : '-' }}</td>
-
-            <td>
-              <span class="status-badge" [class]="loan.loanStatus.toLowerCase()">
-                {{ loan.loanStatus }}
-              </span>
-            </td>
-
-            <td>
-              <button class="btn primary" (click)="loanHistory(loan.id)">Historique</button>
-            </td>
+            <th>ID</th>
+            <th>Utilisateur</th>
+            <th>Équipement</th>
+            <th>Début</th>
+            <th>Fin prévue</th>
+            <th>Retour réel</th>
+            <th>Statut</th>
+            <th>Actions</th>
           </tr>
-        }
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          @for (loan of visibleLoans(); track loan.id) {
+            <tr>
+              <td>{{ loan.id }}</td>
+              <td>{{ loan.appUser.firstName }} {{ loan.appUser.name }}</td>
+              <td>{{ loan.equipment.name }}</td>
+              <td>{{ loan.startDate | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ loan.endDate | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ loan.realEndDate ? (loan.realEndDate | date: 'dd/MM/yyyy') : '-' }}</td>
+              <td>
+                <span class="status-badge {{ loan.loanStatus | lowercase }}">
+                  {{ loan.loanStatus | loanStatusLabel }}
+                </span>
+              </td>
+              <td>
+                <button class="btn ghost" (click)="openHistory(loan.id)">Historique</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
   </section>
 </div>

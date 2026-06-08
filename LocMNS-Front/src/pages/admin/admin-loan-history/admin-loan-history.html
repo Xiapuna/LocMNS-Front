@@ -11,10 +11,10 @@
       </thead>
 
       <tbody>
-        @for (h of admin.loanHistory(); track h.dateChangement) {
+        @for (changement of admin.loanHistory(); track changement.dateChangement) {
           <tr>
-            <td>{{ h.dateChangement | date: 'dd/MM/yyyy' }}</td>
-            <td>{{ h.loanState }}</td>
+            <td>{{ changement.dateChangement | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ changement.loanState }}</td>
           </tr>
         }
       </tbody>

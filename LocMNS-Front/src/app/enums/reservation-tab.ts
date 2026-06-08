@@ -3,4 +3,5 @@ export enum ReservationTab {
   Upcoming = 'upcoming',
   Past = 'past',
   Pending = 'pending',
+  All = 'all',
 }

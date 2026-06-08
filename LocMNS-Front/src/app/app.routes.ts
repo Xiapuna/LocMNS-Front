@@ -75,7 +75,7 @@ export const routes: Routes = [
     title: 'LocMNS - Espace administrateur',
   },
   {
-    path: 'admin-loan-history/:loanId',
+    path: 'admin-loan-history/:id',
     component: AdminLoanHistory,
     canActivate: [adminGuard],
     title: 'LocMNS - Espace administrateur',
