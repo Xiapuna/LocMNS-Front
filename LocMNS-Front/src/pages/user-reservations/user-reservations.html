@@ -45,19 +45,19 @@
         <p>Aucune réservation.</p>
       </div>
     } @else {
-      @for (loan of visibleLoans(); track loan.id) {
+      @for (loan of visibleLoans(); track loan.loanId) {
         <div class="reservation-card">
           <div class="equip-icon">
             <img
-              [src]="loan.equipment.id || 'assets/icons/laptop.svg'"
-              [alt]="loan.equipment.name"
+              [src]="loan.equipmentTypeId | equipmentImage"
+              [alt]="loan.equipmentName"
               width="22"
               height="22"
             />
           </div>
 
           <div class="reservation-info">
-            <h3 class="reservation-title">{{ loan.equipment.name }}</h3>
+            <h3 class="reservation-title">{{ loan.equipmentName }}</h3>
 
             <div class="reservation-meta">
               <span class="status-badge {{ loan.loanStatus | lowercase }}">
@@ -86,11 +86,11 @@
 
           <div class="reservation-actions">
             @if (loan.loanStatus === 'ONGOING' || loan.loanStatus === 'VALIDATED') {
-              <button class="btn primary" (click)="requestReturn(loan.id)">
+              <button class="btn primary" (click)="requestReturn(loan.loanId)">
                 Demander un retour
               </button>
 
-              <button class="btn secondary" (click)="requestExtension(loan.id)">
+              <button class="btn secondary" (click)="requestExtension(loan.loanId)">
                 Demander une extension
               </button>
             }
@@ -104,7 +104,7 @@
             }
           </div>
 
-          <button class="btn ghost" [routerLink]="['/equipment-info/', loan.equipment.id]">
+          <button class="btn ghost" [routerLink]="['/equipment-info/', loan.equipmentId]">
             Voir →
           </button>
         </div>

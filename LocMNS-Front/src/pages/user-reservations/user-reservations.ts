@@ -6,15 +6,17 @@ import { UserService } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { LoanStatusLabelPipe } from '../../app/pipes/loan-status-label.pipe';
+import { EquipmentImagePipe } from '../../app/pipes/equipment-image.pipe';
+import { UserReservationDto } from '../../app/models/user-reservation-dto';
 
 @Component({
   selector: 'app-user-reservations',
-  imports: [RouterLink, CommonModule, LoanStatusLabelPipe],
+  imports: [RouterLink, CommonModule, LoanStatusLabelPipe, EquipmentImagePipe],
   templateUrl: './user-reservations.html',
   styleUrl: './user-reservations.css',
 })
 export class UserReservations implements OnInit {
-  userLoans = signal<Loan[] | null>(null);
+  userLoans = signal<UserReservationDto[] | null>(null);
   activeTab = signal<ReservationTab>(ReservationTab.Current);
 
   ReservationTab = ReservationTab;

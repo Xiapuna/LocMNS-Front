@@ -5,17 +5,19 @@ import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { LoanStatusLabelPipe } from '../../app/pipes/loan-status-label.pipe';
+import { EquipmentImagePipe } from '../../app/pipes/equipment-image.pipe';
+import { UserReservationDto } from '../../app/models/user-reservation-dto';
 
 @Component({
   selector: 'app-user-dashboard',
-  imports: [RouterLink, CommonModule, LoanStatusLabelPipe],
+  imports: [RouterLink, CommonModule, LoanStatusLabelPipe, EquipmentImagePipe],
   templateUrl: './user-dashboard.html',
   styleUrl: './user-dashboard.css',
 })
 export class UserDashboard implements OnInit {
   userService = inject(UserService);
   authService = inject(AuthService);
-  userLoans = signal<Loan[] | null>(null);
+  userLoans = signal<UserReservationDto[] | null>(null);
   activeTab = signal<ReservationTab>(ReservationTab.Current);
 
   ReservationTab = ReservationTab;
@@ -62,8 +64,8 @@ export class UserDashboard implements OnInit {
       return;
     }
 
-    this.userService.getUserLoans(user.id).subscribe((loanList) => {
-      this.userLoans.set(loanList);
+    this.userService.getUserLoans(user.id).subscribe((dtoList) => {
+      this.userLoans.set(dtoList);
     });
   }
 

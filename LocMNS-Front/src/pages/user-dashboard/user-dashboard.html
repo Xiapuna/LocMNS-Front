@@ -13,19 +13,19 @@
     } @else {
       <p class="section-label">En cours</p>
 
-      @for (loan of visibleLoans(); track loan.id) {
+      @for (loan of visibleLoans(); track loan.loanId) {
         <div class="reservation-card">
           <div class="equip-icon" aria-hidden="true">
             <img
-              [src]="loan.equipment.id || 'assets/icons/laptop.svg'"
-              [alt]="loan.equipment.name"
+              [src]="loan.equipmentTypeId | equipmentImage"
+              [alt]="loan.equipmentName"
               width="22"
               height="22"
             />
           </div>
 
           <div class="reservation-info">
-            <h3 class="reservation-title">{{ loan.equipment.name }}</h3>
+            <h3 class="reservation-title">{{ loan.equipmentName }}</h3>
 
             <div class="reservation-meta">
               <span class="status-badge {{ loan.loanStatus | lowercase }}">
@@ -55,8 +55,8 @@
 
           <button
             class="btn ghost"
-            [routerLink]="['/equipment-info/', loan.equipment.id]"
-            aria-label="Voir {{ loan.equipment.name }}"
+            [routerLink]="['/equipment-info/', loan.equipmentId]"
+            aria-label="Voir {{ loan.equipmentName }}"
           >
             Voir
             <svg

@@ -32,7 +32,6 @@ export class EquipmentBooking implements OnInit {
   }
 
   goToStep(number: number) {
-    console.log('STEP =', number);
     this.step.set(number);
   }
 

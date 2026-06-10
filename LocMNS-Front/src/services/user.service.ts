@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { map } from 'rxjs';
 import { environment } from '../environments/environment';
+import { UserReservations } from '../pages/user-reservations/user-reservations';
+import { UserReservationDto } from '../app/models/user-reservation-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +17,9 @@ export class UserService {
   }
 
   getUserLoans(id: number) {
-    return this.httpClient.get<Loan[]>(`${environment.serverUrl}/appuser/${id}/loans`);
+    return this.httpClient.get<UserReservationDto[]>(
+      `${environment.serverUrl}/appuser/${id}/loans`,
+    );
   }
 
   private toDate(dateString: string): Date {
@@ -30,7 +34,7 @@ export class UserService {
     return d;
   }
 
-  getCurrentLoans(loans: Loan[]): Loan[] {
+  getCurrentLoans(loans: UserReservationDto[]): UserReservationDto[] {
     const today = this.today();
 
     return loans.filter((l) => {
@@ -45,13 +49,13 @@ export class UserService {
     });
   }
 
-  getUpcomingLoans(loans: Loan[]): Loan[] {
+  getUpcomingLoans(loans: UserReservationDto[]): UserReservationDto[] {
     const today = this.today();
 
     return loans.filter((l) => this.toDate(l.startDate) > today && l.loanStatus === 'VALIDATED');
   }
 
-  getPastLoans(loans: Loan[]): Loan[] {
+  getPastLoans(loans: UserReservationDto[]): UserReservationDto[] {
     return loans.filter((l) => l.loanStatus === 'RETURNED');
   }
 
